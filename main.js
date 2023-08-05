@@ -134,7 +134,7 @@ app.get('/music', async (req, res) => {
       const musicData = await db.collection('music').find().sort({ view: -1 }).toArray();
   
       const albumInfoPromises = [];
-      for (let i = 0; i < 5; i++) {
+      for (let i = 0; i < musicData.length; i++) {
         albumInfoPromises.push(db.collection('album').findOne({ title: musicData[i].album }));
       }
   
@@ -143,7 +143,7 @@ app.get('/music', async (req, res) => {
       res.render(__dirname + '/views/music.ejs', { album: revAlbum, top: musicData, albumInfo: albumInfo });
     } catch (err) {
       console.error(err);
-      res.status(500).send('Internal Server Error');
+      res.render(__dirname + '/views/music.ejs', { album: revAlbum, top: musicData, albumInfo: albumInfo });
     }
   });
 
@@ -202,13 +202,13 @@ app.post('/musicing/making', upload.array('upload'), (req, res) => {
                     await db.collection('album').updateOne({ title: req.body.title }, { $set: { genre: genres.substring(2) } });
                     await db.collection('music_counter').updateOne({ name: '음악 수' }, { $inc: { totalMusic: 1 } });
                     await db.collection('album_counter').updateOne({ name: 'totalAlbum' }, { $inc: { totalAlbum: 1 } });
-                    res.redirect('/music')
                   } catch (err) {
                     console.error(err);
                   }
                 }
               }
               musicSave();
+              res.redirect('/music')
         })
     })
 });
