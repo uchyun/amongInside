@@ -1,0 +1,70 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>AMinside</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+    <link rel="stylesheet" href="./css/nav.css">
+    <link rel="stylesheet" href="./css/music.css">
+  </head>
+  <body>
+    <script>
+      window.addEventListener('load', function () {
+      const gridItems = document.querySelectorAll('.music');
+
+      function setSameHeight() {
+      gridItems.forEach(item => {
+        item.style.height = item.offsetWidth + 'px';
+      });
+  }
+
+  setSameHeight();
+
+  window.addEventListener('resize', setSameHeight);
+});
+    </script>
+    <%- include('nav.html') %>
+    <div id="music-sections" class="section">
+      <h2 id="rank" class="section">TOP 5</h2>
+
+      <ul id="rank-music" class="list-group section">
+        <% if ( top.length < 5 ) { %></5>
+          <li class="list-group-item">곡이 5개가 안 넘어요.</li>
+        <% } else { %>
+          <% for ( let i = 0; i < 5; i++ ) { %>
+            <li class="list-group-item">
+              <span class="rank-number" id="rank-number-<%= top[i].title %>"></span>
+              <span class="album-image-container"><img class="album-image" src="../upload/<%= albumInfo[i].image %>"></span>
+              <span class="titleNartist">
+                <span class="title">
+                  <%= top[i].title %>
+                </span>
+                <span class="artist">
+                  <%= top[i].artist %>
+                </span>
+              </span>
+            </li>
+          <% } %>
+        <% } %>
+      </ul>
+      <input type="text" data-id="<%= JSON.stringify(top) %>" id="data" hidden>
+      <script>
+        var data = JSON.parse(document.getElementById('data').getAttribute('data-id'));
+        for ( let i = 0; i < 5; i++ ) {
+          document.getElementById(`rank-number-${data[i].title}`).textContent = `${i + 1}`;
+        }
+      </script>
+      <h2 id="album" class="section">Albums</h2>
+      <ul id="albums" class="section">
+        <% for ( let i = 0; i < album.length; i++ ) { %>
+          <a href="/album/<%= album[i].albumID %>" class="album-container"><li class="music"><img src="../upload/<%= album[i].image %>"></li></a>
+        <% } %>
+      </ul>
+    </div>
+    <span id="music-upload" onclick="window.location.pathname = '/musicing'">
+      업로드
+    </span>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
+  </body>
+</html>

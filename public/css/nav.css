@@ -1,0 +1,44 @@
+#home-logo {
+    width: 30px;
+    height: auto;
+}
+.nav-link {
+    color:black;
+}
+.active {
+    font-weight: bold;
+}
+#sec-nav {
+    background-color: #f8f9fa
+}
+.nav-link {
+    text-decoration: none;
+}
+a {
+    color: black;
+}
+#write-button {
+    width:80px;
+    height:80px;
+    border-radius:50%;
+    background-color:blue;
+    position:fixed;
+    bottom: 30px;
+    right: 30px;
+    cursor: pointer;
+}
+#file {
+    flex: 9.6;
+}
+#uproad {
+    display: block;
+    flex : 0.4;
+    margin-left: 25px;
+    white-space: nowrap;
+}
+#file-submit-flex {
+    height:30px;
+}
+#anony {
+    margin-left: 30px;
+}
