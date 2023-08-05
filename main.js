@@ -354,7 +354,6 @@ app.post('/sign_process', (req, res) => {
         } else {
             db.collection('counter').findOne({ name : '회원 수' }, (err, data) => {
                 db.collection('member').findOne({ 아이디 : req.body.id }, (err, member) => {
-                    if (member == []) {
                         db.collection('member').insertOne( { _id : data.totalPost + 1, 이름 : req.body.name, 아이디 : req.body.id, 비밀번호 : req.body.pw, 전화번호 : req.body.phone, tear : 'rookie' }, (err, result) => {
                             if (err) return console.log(err);
                             db.collection('counter').updateOne({ name : '회원 수' }, { $inc : { totalPost : 1 } }, (err, result) => {
@@ -363,7 +362,6 @@ app.post('/sign_process', (req, res) => {
                                 res.redirect('/profile');
                             })
                         })
-                    }
                 })
             })
         }
