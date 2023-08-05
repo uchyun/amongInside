@@ -363,9 +363,6 @@ app.post('/sign_process', (req, res) => {
                                 res.redirect('/profile');
                             })
                         })
-                    } else {
-                        let message = '이미 존재하는 아이디입니다'
-                        res.render('sign_err.ejs', { message : message })
                     }
                 })
             })
