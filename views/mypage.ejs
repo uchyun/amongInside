@@ -133,7 +133,7 @@
         $.ajax({
         url : '/delete_playlist', 
         method : 'delete',
-        data : { songID : e.target.dataset.id }
+        data : { order : e.target.dataset.id }
         }).done(() => {
           location.reload();
         }).fail((a, b, c) => {
