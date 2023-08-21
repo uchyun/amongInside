@@ -1,0 +1,31 @@
+<nav class="navbar bg-body-tertiary" style="padding-top:4px; padding-bottom:4px;">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="/">
+      <img id="home-logo" src="../images/among_logo.png" class="d-inline-block align-text-top">
+      Among Inside
+    </a>
+  </div>
+</nav>
+
+<ul id="sec-nav" class="nav nav-tabs">
+  <li class="nav-item">
+    <a class="nav-link" id="gallery" href="/gallery" style="color: black;">갤러리</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" id="music" href="/music" style="color: black;">노래방</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" id="profile" href="/profile" style="color: black;">프로필</a>
+  </li>
+</ul>
+
+<script>
+let path = window.location.pathname;
+if (path === '/gallery' || path === '/write') {
+    document.getElementById('gallery').classList.add('active');
+} else if (path === '/music' || path === '/musicing' || path.split('/').slice(1, 2).join('/') === 'album' || path.split('/').slice(1, 2).join('/') === 'song') {
+    document.getElementById('music').classList.add('active');
+} else if (path === '/profile' || path === '/sign_up') {
+    document.getElementById('profile').classList.add('active');
+}
+</script>
