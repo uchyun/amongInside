@@ -301,7 +301,7 @@
           reader.readAsDataURL(file);
         }
       });
-      $('.playlist-song').play(() => {
+      $('.playlist-song').on('play', () => {
         let alreadyTriggered = false;
 
       $('.playlist-song').on('timeupdate', function(e) {
