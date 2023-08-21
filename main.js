@@ -282,13 +282,22 @@ app.post('/mypage/edit', upload.single('changedImage'), (req, res) => {
         res.redirect('/profile');
     })
 })
-app.delete('/delete_playlist', loginTest, (req, res) => {
-    req.body.songID = parseInt(req.body.songID)
+app.delete('/delete_playlist', loginTest, async (req, res) => {
+    order = parseInt(req.body.order)
     console.log(req.body);
-    console.log(req.body.songID);
-    db.collection(req.user.아이디).deleteOne(req.body, (err, data) => {
-        res.status(200).send({ message : '성공' });
-    })
+    try {
+        const base = await db.collection(req.user.아이디).find().sort({ order : 1 }).toArray();
+        db.collection(req.user.아이디).deleteOne({ order : order }, (err, data) => {
+            for ( let i = 0; i < base.length; i++ ) {
+                if (base[i].order > req.body.order) {
+                    db.collection(req.user.아이디).updateOne({ order : base[i].order }, { $inc: { order: -1 } });
+                }
+            }
+            res.status(200).send({ message : '성공' });
+        })
+    } catch {
+        
+    }
 })
 app.post('/incview', (req, res) => {
     console.log(req.body)
