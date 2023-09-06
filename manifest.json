@@ -1,0 +1,26 @@
+{
+  "background_color": "#fee2ff",
+  "description": "AMinside of the AM, for the AM, by the AM.",
+  "dir": "ltr",
+  "display": "standalone",
+  "name": "AMinside",
+  "orientation": "any",
+  "scope": "/",
+  "short_name": "AM",
+  "start_url": "/",
+  "theme_color": "#fee2ff",
+  "categories": [
+    "music",
+    "social"
+  ],
+  "screenshots": [],
+  "icons": [],
+  "shortcuts": [
+    {
+      "name": "AMinside",
+      "url": "/",
+      "description": "AMinside for the AM"
+    }
+  ],
+  "lang": "ko"
+}
