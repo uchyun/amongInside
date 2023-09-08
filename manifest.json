@@ -7,7 +7,7 @@
   "orientation": "any",
   "scope": "/",
   "short_name": "AM",
-  "start_url": "/",
+  "start_url": "https://port-0-amonginside-ac2nlky4wxdt.sel4.cloudtype.app/",
   "theme_color": "#fee2ff",
   "categories": [
     "music",
